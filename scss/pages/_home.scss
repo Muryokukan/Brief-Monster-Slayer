@@ -4,35 +4,47 @@
 .hunter {
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    gap: 5px;
+    gap: 20px;
+    width: 100%;
 }
 
-.lifeStocks {
+body {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    gap: 5px;
+    flex-direction: column;
+}
+.player, .monster {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+}
 
+.bar-container {
+    width: 100%;
+    height: 30px;
+    background-color: #ddd;
+    position: relative;
+    overflow: hidden;
 }
 
 .bars {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    background-color: green;
-    border: solid black 1px;
+    height: 30px;
+    line-height: 30px;
+    transition: width 0.3s ease;
+    position: absolute;
+    left: 0;
+    top: 0;    
+    text-align: center;
+    color: white;
+    width: 100%;
+}
+
+#humanStock, #monsterStock {
+    background-color: #4caf50;
 }
 
 #display {
-    width: 40vw;
-    margin: 20px;
-}
-
-.resultBox {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin-bottom: 20px;
 }

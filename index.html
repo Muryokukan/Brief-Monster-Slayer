@@ -11,19 +11,23 @@
 
 <div id="display">
     <div class="hunter">
-        <h1>SLAYER</h1>
-        <h1>MONSTER</h1>
+        <div class="player">
+            <h1>SLAYER</h1>
+            <div class="bar-container">
+                <div id="humanStock" class="bars">100</div>
+            </div>
+        </div>
+        <div class="monster">
+            <h1>MONSTER</h1>
+            <div class="bar-container">
+                <div id="monsterStock" class="bars">100</div>
+            </div>
+        </div>
     </div>
-    <div class="lifeStocks">
-        <span class="bars" id="humanStock">100</span>
-        <span class="bars" id="monsterStock">100</span>
-    </div>
-    
 </div>
+
 <div class="resultBox">
-
-    <input type="submit" id="start" value="Start game">
-
+    <input type="submit" id="start" value="Start the game">
     <div class="list" style="display: none;">
         <div class="buttons">
             <button onclick="attack()">attack</button>
@@ -31,10 +35,8 @@
             <button onclick="heal()">heal</button>
             <button onclick="flee()">flee</button>
         </div>
-        <ul id="history"></ul>
     </div>
-    
-
+    <ul id="history"></ul>
 </div>
 
     <script src="js/script.js"></script>
