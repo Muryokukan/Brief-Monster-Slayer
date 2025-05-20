@@ -2,12 +2,14 @@ let humanHealth = 100;
 let monsterHealth = 100;
 
 document.getElementById("start").addEventListener("click", function() {
-    this.remove();
+    this.style.display = 'none';
     startGame();
 });
 
+
 const humanStock = document.getElementById('humanStock');
 const monsterStock = document.getElementById('monsterStock');
+
 humanStock.innerHTML = humanHealth;
 monsterStock.innerHTML = monsterHealth;
 
@@ -40,15 +42,11 @@ function checkWin(humanHealth, monsterHealth) {
     }
 }
 
-function resetGame() {
-    humanHealth = 100;
-    monsterHealth = 100;
-
-    humanStock.innerHTML = humanHealth;
-    monsterStock.innerHTML = monsterHealth;
-
-    const historyList = document.getElementById('history');
-    historyList.innerHTML = '';
+function flee() {
+    document.querySelector('.list').style.display = 'none';
+    document.getElementById("start").style.display = 'block';
+    alert("Le Slayer a pris la fuite !")
+    resetGame();
 }
 
 function addHistory(humanAttack, monsterAttack) {
@@ -58,23 +56,52 @@ function addHistory(humanAttack, monsterAttack) {
     historyList.appendChild(newItem);
 }
 
+function resetGame() { 
+    humanHealth = 100;
+    monsterHealth = 100;
+
+    humanStock.innerHTML = humanHealth;
+    monsterStock.innerHTML = monsterHealth;
+    
+    document.getElementById("start").style.display = 'block';
+    
+    document.querySelector('.list').style.display = 'none';
+    
+    const historyList = document.getElementById('history');
+    historyList.innerHTML = '';
+}
+
 function heal() {
-    if (humanHealth >= 100) {
-        let humanHealth = 100;
-    } else {
     let healAmount = Math.floor(Math.random() * 10) + 5;
     let monsterAttack = Math.floor(Math.random() * 10) + 1;
 
     humanHealth -= monsterAttack;
     humanHealth += healAmount;
+    
+    if (humanHealth > 100) { // for capping the health to 100 when you heal
+        humanHealth = 100;
+    }
 
     humanStock.innerHTML = humanHealth;
+    
+    checkWin(humanHealth, monsterHealth);
 
     const newItem = document.createElement('li');
-    newItem.textContent = `Le Slayer a récupéré ${healAmount} points de vie, mais le monstre a infligé ${monsterAttack} points de dégâts au Slayer.`;
+    newItem.textContent = `le monstre a infligé ${monsterAttack} points de dégâts au Slayer, mais le Slayer a récupéré ${healAmount} point de vie !`;
     const historyList = document.getElementById('history');
     historyList.appendChild(newItem);
 }
-};
 
-function flee() {}
+function specialAttack() {
+    let humanAttack = Math.floor(Math.random() * 10) + 6;
+    let monsterAttack = Math.floor(Math.random() * 10) + 1;
+
+    humanHealth -= monsterAttack;
+    monsterHealth -= humanAttack;
+
+    humanStock.innerHTML = humanHealth;
+    monsterStock.innerHTML = monsterHealth;
+
+    checkWin(humanHealth, monsterHealth);
+    addHistory(humanAttack, monsterAttack);
+}
