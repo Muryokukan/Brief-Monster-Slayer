@@ -9,17 +9,32 @@
 </head>
 <body>
 
-
-<div class="hunter">
-    <h1>YOU</h1>
-    <h1>MONSTER</h1>
+<div id="display">
+    <div class="hunter">
+        <h1>YOU</h1>
+        <h1>MONSTER</h1>
+    </div>
+    <div class="lifeStocks">
+        <span class="bars" id="humanStock">100</span>
+        <span class="bars" id="monsterStock">100</span>
+    </div>
+    
 </div>
+<div class="resultBox">
 
-<div class="lifeStocks">
-    <span class="bars" id="humanStock">100</span>
-    <span class="bars" id="monsterStock">100</span>
+    <input type="submit" id="start">
+
+    <div class="list" style="display: none;">
+        <div class="buttons">
+            <button onclick="attack()">attack</button>
+            <button onclick="humanSpecialAttack()">special attack</button>
+            <button onclick="humanhealing()">heal</button>
+            <button onclick="humanFleeing()">flee</button>
+        </div>
+        <ul id="history"></ul>
+    </div>
+
 </div>
-
 
     <script src="js/script.js"></script>
 </body>

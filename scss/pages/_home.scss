@@ -13,6 +13,7 @@
     justify-content: space-around;
     align-items: center;
     gap: 5px;
+
 }
 
 .bars {
@@ -21,4 +22,23 @@
     align-items: center;
     width: 300px;
     background-color: green;
+    border: solid black 1px;
+}
+
+#display {
+    width: 40vw;
+    margin: 20px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.resultBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
