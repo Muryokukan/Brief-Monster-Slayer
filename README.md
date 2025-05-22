@@ -4,11 +4,11 @@
 *Un jeu entre un Slayer et un Monstre !*.
 
 ## Objectifs
-- Tuer le Monstre à l'aide de sorts divers et variés : 
+- Tuer le Monstre à l'aide d'actions divers et variés : 
   - Une attaque de base
   - Une attaque spéciale
   - Un sort pour se soigner
-  - Un sort pour fuir le combat
+  - Une action pour fuir le combat
 
 ## Technologies Utilisées
 - **HTML5** : Structure sémantique et optimisée pour le SEO.
@@ -19,17 +19,15 @@
 ```text
 
 ├── scss
-│   ├── _components.scss # Styles des composants
-│   ├── _footer.scss     # Styles du pied de page
-│   ├── _functions.scss  # Fonctions SCSS
-│   ├── _header.scss     # Styles de l'en-tête
-│   ├── _layout.scss     # Styles de mise en page
-│   ├── _main.scss       # Styles de la section principale
-│   ├── _mixins.scss     # Mixins SCSS
-│   ├── _reset.scss      # Reset CSS
-│   ├── _typography.scss # Styles de typographie
-│   ├── _variables.scss  # Variables SCSS
-│   └── style.scss       # Fichier principal SCSS
+│   ├── abstracts
+│   ├── base
+│   ├── components
+│   ├── layout
+│   ├── pages
+│   │   └── _home.scss   # La plupart du CSS est là
+│   ├── themes
+│   ├── vendors
+│   └── main.scss        # Fichier principal SCSS
 ├── index.html           # Page d’accueil
 ├── README.md            # Documentation du projet
 └── js
@@ -49,4 +47,3 @@ Ce projet est distribué sous la **Licence MIT**. Vous êtes libres de copier, m
 - ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white)
 
 *Pour toute question ou contribution, n’hésitez pas à soumettre une issue ou un pull request.*
-
