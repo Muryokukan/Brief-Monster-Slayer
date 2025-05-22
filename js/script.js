@@ -8,11 +8,13 @@ document.getElementById("start").addEventListener("click", function() {
 
 const humanStock = document.getElementById('humanStock');
 const monsterStock = document.getElementById('monsterStock');
+const humanStockNumber = document.getElementById('humanStockNumber');
+const monsterStockNumber = document.getElementById('monsterStockNumber');
 
 function updateHealthBars() {
-    humanStock.textContent = humanHealth;
-    monsterStock.textContent = monsterHealth;
-    
+    humanStockNumber.textContent = humanHealth;
+    monsterStockNumber.textContent = monsterHealth;
+
     humanStock.style.width = humanHealth + '%';
     monsterStock.style.width = monsterHealth + '%';
     
@@ -73,9 +75,17 @@ function flee() {
 function addHistory(humanAttack, monsterAttack) {
     const newItem = document.createElement('li');
     newItem.textContent = `Slayer dealt monster for ${humanAttack} damage but the monster dealt ${monsterAttack} damage to the Slayer.`;
+    newItem.className = 'battle-action';
+    
     const historyList = document.getElementById('history');
-    historyList.appendChild(newItem);
+
+    if (historyList.firstChild) {
+        historyList.insertBefore(newItem, historyList.firstChild);
+    } else {
+        historyList.appendChild(newItem);
+    }
 }
+
 
 function resetGame() { 
     humanHealth = 100;
