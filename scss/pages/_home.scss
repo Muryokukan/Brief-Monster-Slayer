@@ -12,7 +12,7 @@ body {
     padding: 20px;
 }
 
-/* Main display container */
+
 #display {
     width: 100%;
     max-width: 800px;
@@ -62,7 +62,7 @@ h1 {
     color: #f44336;
 }
 
-/* Health number display */
+
 #humanStockNumber, #monsterStockNumber {
     position: absolute;
     top: 15px;
@@ -82,7 +82,6 @@ h1 {
     color: #f44336;
 }
 
-/* Health bars */
 .bar-container {
     height: 30px;
     background-color: rgba(0, 0, 0, 0.3);
@@ -108,7 +107,6 @@ h1 {
     box-shadow: 0 0 10px rgba(244, 67, 54, 0.5);
 }
 
-/* Control section */
 .resultBox {
     width: 100%;
     max-width: 800px;
@@ -197,15 +195,16 @@ h1 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* History list */
+
 #history {
     list-style: none;
     margin-top: 15px;
-    max-height: 200px;
+    max-height: 400px;
     overflow-y: auto;
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
+    scrollbar-width: none;
 }
 
 #history li {
@@ -215,26 +214,6 @@ h1 {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.4);
-}
-
-/* Animation for damage */
 @keyframes damage {
     0% { transform: translateX(0); }
     25% { transform: translateX(-5px); }

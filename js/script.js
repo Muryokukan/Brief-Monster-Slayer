@@ -1,3 +1,5 @@
+"use strict";
+
 let humanHealth = 100;
 let monsterHealth = 100;
 
@@ -10,6 +12,23 @@ const humanStock = document.getElementById('humanStock');
 const monsterStock = document.getElementById('monsterStock');
 const humanStockNumber = document.getElementById('humanStockNumber');
 const monsterStockNumber = document.getElementById('monsterStockNumber');
+
+function startGame() {
+    document.querySelector('.list').style.removeProperty('display');
+}
+
+function attack() {
+    let humanAttack = Math.floor(Math.random() * 10) + 2;
+    let monsterAttack = Math.floor(Math.random() * 10) + 1;
+
+    humanHealth -= monsterAttack;
+    monsterHealth -= humanAttack;
+
+    updateHealthBars();
+
+    addHistory(humanAttack, monsterAttack);
+    checkWin(humanHealth, monsterHealth);
+}
 
 function updateHealthBars() {
     humanStockNumber.textContent = humanHealth;
@@ -37,22 +56,6 @@ function updateHealthBars() {
 
 updateHealthBars();
 
-function startGame() {
-    document.querySelector('.list').style.removeProperty('display');
-}
-
-function attack() {
-    let humanAttack = Math.floor(Math.random() * 10) + 2;
-    let monsterAttack = Math.floor(Math.random() * 10) + 1;
-
-    humanHealth -= monsterAttack;
-    monsterHealth -= humanAttack;
-
-    updateHealthBars();
-
-    addHistory(humanAttack, monsterAttack);
-    checkWin(humanHealth, monsterHealth);
-}
 
 function checkWin(humanHealth, monsterHealth) {
     if (humanHealth <= 0) {
@@ -72,17 +75,26 @@ function flee() {
     resetGame();
 }
 
-function addHistory(humanAttack, monsterAttack) {
+function addHistory(humanAttack, monsterAttack, actionType = 'attack') {
     const newItem = document.createElement('li');
-    newItem.textContent = `Slayer dealt monster for ${humanAttack} damage but the monster dealt ${monsterAttack} damage to the Slayer.`;
-    newItem.className = 'battle-action';
+    
+    if (actionType === 'heal') {
+        newItem.textContent = `The monster dealt ${monsterAttack} to the Slayer, but the Slayer healed for ${humanAttack} health point.`;
+    } else {
+        newItem.textContent = `Slayer dealt ${humanAttack} damage to the monster, but the monster dealt ${monsterAttack} damage to the Slayer.`;
+    }
     
     const historyList = document.getElementById('history');
 
+    // to add the the top instead of the bottom of the history list
     if (historyList.firstChild) {
         historyList.insertBefore(newItem, historyList.firstChild);
     } else {
-        historyList.appendChild(newItem);
+        historyList.append(newItem);
+    }
+    // Add a max length to display maximum 8 li
+    if (historyList.children.length > 8) {
+        historyList.removeChild(historyList.lastChild);
     }
 }
 
@@ -115,10 +127,7 @@ function heal() {
     
     checkWin(humanHealth, monsterHealth);
 
-    const newItem = document.createElement('li');
-    newItem.textContent = `The monster dealt ${monsterAttack} to the Slayer, but the Slayer healed for ${healAmount} health point.`;
-    const historyList = document.getElementById('history');
-    historyList.appendChild(newItem);
+    addHistory(healAmount, monsterAttack, 'heal');
 }
 
 function specialAttack() {
